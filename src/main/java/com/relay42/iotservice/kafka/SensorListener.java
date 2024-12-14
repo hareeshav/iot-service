@@ -1,8 +1,9 @@
 package com.relay42.iotservice.kafka;
 
 
-import com.relay42.iotservice.model.SensorData;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.relay42.iotservice.model.SensorData;
+import com.relay42.iotservice.repository.SensorRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;

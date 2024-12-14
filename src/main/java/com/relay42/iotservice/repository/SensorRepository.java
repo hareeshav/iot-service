@@ -2,12 +2,17 @@ package com.relay42.iotservice.repository;
 
 import com.influxdb.client.InfluxDBClient;
 import com.influxdb.client.QueryApi;
+import com.influxdb.client.WriteApiBlocking;
+import com.influxdb.client.domain.WritePrecision;
+import com.influxdb.client.write.Point;
 import com.influxdb.query.FluxRecord;
 import com.influxdb.query.FluxTable;
+import com.relay42.iotservice.model.SensorData;
 import com.relay42.iotservice.model.TimeWindowStats;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
+import java.time.Instant;
 import java.util.*;
 
 @Repository
@@ -17,6 +22,9 @@ public class SensorRepository {
 
     @Value("${influxdb.bucket}")
     private String bucket;
+
+    @Value("${influxdb.org}")
+    private String org;
 
     public SensorRepository(InfluxDBClient influxDBClient) {
         this.influxDBClient = influxDBClient;
@@ -76,5 +84,25 @@ public class SensorRepository {
                 });
             }
         }
+    }
+
+    public void saveSensorData(SensorData sensorData) {
+        // Prepare the point to write
+        String deviceId = sensorData.deviceId();
+        double value = sensorData.value();
+        Instant timestamp = sensorData.timestamp();
+
+        // Create a point with the required fields
+        Point point = Point.measurement("sensor_data")
+                .addTag("deviceId", deviceId)
+                .addField("value", value)
+                .time(timestamp.toEpochMilli(), WritePrecision.MS);
+
+        // Get the WriteApiBlocking instance
+        WriteApiBlocking writeApi = influxDBClient.getWriteApiBlocking();
+
+        // Write the point to InfluxDB
+        writeApi.writePoint(bucket, org, point);
+
     }
 }

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/sensors")
@@ -18,7 +17,7 @@ public class SensorController {
     @Autowired
     private SensorService service;
 
-    @GetMapping("/stats1")
+    @GetMapping("/stats")
     public  List<TimeWindowStats> getStats(
             @RequestParam String deviceId,
             @RequestParam String start,

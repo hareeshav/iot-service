@@ -1,5 +1,6 @@
 package com.relay42.iotservice.controller;
 
+import com.relay42.iotservice.model.UserCredentials;
 import com.relay42.iotservice.security.JWTTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
