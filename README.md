@@ -49,9 +49,9 @@ Query Parameters:
 * start: Start time in ISO 8601 format (e.g., 2023-12-01T00:00:00Z).
 * end: End time in ISO 8601 format (e.g., 2024-12-31T23:59:59Z).
 * statistics: Comma-separated list of statistics (e.g., max, min, median, mean).
-* aggregateWindow: The window for aggregation (e.g., 30m for 30 minutes).
+* aggregateWindow: The window for aggregation (e.g., 1h for 1hour).
   `Example Request:
-  GET http://localhost:8080/api/sensors/stats?deviceId=device123&start=2023-12-01T00%3A00%3A00Z&end=2024-12-31T23%3A59%3A59Z&statistics=max,%20min,median,mean&aggregateWindow=30m
+  GET http://localhost:8080/api/sensors/stats?deviceId=device123&start=2023-12-01T00%3A00%3A00Z&end=2024-12-31T23%3A59%3A59Z&statistics=max,%20min,median,mean&aggregateWindow=1h
   Example Response:
   [
   {
