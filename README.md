@@ -11,8 +11,9 @@ defined timeframe.
 - **Java**: The backend application is implemented using Java 21.
 - **Spring Boot**: Used for building the backend REST API and secure web service.
 - **Kafka**: A message broker used to handle real-time data streams from IoT devices.
-- **InfluxDB**: A time-series database used to store and query sensor data.
-- **Docker Compose**: For containerizing the application, Kafka, and InfluxDB.
+- **InfluxDB**: A time-series database used to store and query sensor data. Currently for demo cloud hosted service is
+  used
+- **Docker Compose**: For containerizing the application, Kafka.
 
 ## Local Setup
 
