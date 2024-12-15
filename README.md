@@ -87,6 +87,8 @@ curl -H "Authorization: Bearer your-jwt-token" "http://localhost:8080/api/sensor
    for performance analysis.
 2. Schema for Kafka: Defining a schema for Kafka messages to ensure consistency and validation of incoming data.
 3. Unit Testing: Adding more unit tests for critical components of the application.
-4. API Documentation: Integrating Swagger/OpenAPI for automatic API documentation and better visibility of the available
+4. API Documentation:  Integrating Swagger/OpenAPI for automatic API documentation and better visibility of the
+   available
    endpoints.
+
 
