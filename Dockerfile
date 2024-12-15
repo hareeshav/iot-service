@@ -1,3 +1,9 @@
-FROM eclipse-temurin:21-jdk
-COPY target/iot-prototype-1.0.0.jar app.jar
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+FROM openjdk:21-jdk-slim
+
+WORKDIR /app
+
+COPY target/iot-service.jar /app/iot-service.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "iot-service.jar"]

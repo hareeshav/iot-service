@@ -19,19 +19,3 @@ services:
       - "2181:2181"
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
-
-  influxdb:
-    image: influxdb:latest
-    ports:
-      - "8086:8086"
-    environment:
-      INFLUXDB_ADMIN_USER: admin
-      INFLUXDB_ADMIN_PASSWORD: password
-      INFLUXDB_ORG: myorg
-      INFLUXDB_BUCKET: mybucket
-      INFLUXDB_ADMIN_TOKEN: mysecretadmin-token
-    volumes:
-      - influxdb-storage:/var/lib/influxdb2
-
-volumes:
-  influxdb-storage:

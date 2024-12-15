@@ -13,7 +13,7 @@ public class InfluxDBConfig {
     @Value("${influxdb.url}")
     private String influxDbUrl;
 
-    @Value("${influxdb.token}")
+    @Value("${influxdb.token:#{null}}")
     private String token;
 
     @Value("${influxdb.org}")
@@ -26,17 +26,21 @@ public class InfluxDBConfig {
 
     @PostConstruct
     public void init() {
-        influxDBClient = InfluxDBClientFactory.create(influxDbUrl, token.toCharArray(), orgName, bucketName);
+        if (token == null || token.isEmpty()) {
+            influxDBClient = InfluxDBClientFactory.create(influxDbUrl);
+        } else {
+            influxDBClient = InfluxDBClientFactory.create(influxDbUrl, token.toCharArray(), orgName, bucketName);
+        }
 
-        createBucketIfNotExists();
+        // createBucketIfNotExists();
     }
 
-    private void createBucketIfNotExists() {
+    /*private void createBucketIfNotExists() {
         if (influxDBClient.getBucketsApi().findBuckets().stream()
                 .noneMatch(bucket -> bucket.getName().equals(bucketName))) {
             influxDBClient.getBucketsApi().createBucket(bucketName, orgName);
         }
-    }
+    }*/
 
     @Bean
     public InfluxDBClient influxDBClient() {

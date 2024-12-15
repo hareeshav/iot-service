@@ -73,7 +73,7 @@ public class SensorRepository {
     private void updateStats(Map<String, TimeWindowStats> statsByTime, List<FluxTable> fluxTables, String statistic) {
         for (FluxTable table : fluxTables) {
             for (FluxRecord record : table.getRecords()) {
-                String time = record.getValueByKey("_time").toString();
+                String time = Objects.requireNonNull(record.getValueByKey("_time")).toString();
                 Double value = record.getValueByKey("_value") != null
                         ? Double.valueOf(Objects.requireNonNull(record.getValueByKey("_value")).toString())
                         : null;
