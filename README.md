@@ -6,6 +6,12 @@ The task involves building a scalable pipeline for processing IoT data, and impl
 querying sensor readings (e.g., average, median, max, min values) of specific sensors or groups of sensors within a
 defined timeframe.
 
+## Implementation Details
+
+A sample data generator class is used to mock the data from 3 IoT devices every second. This data is captured to
+KafkaTopic. The kafka listener is configured to read the messages
+from the topic to influxDB. API is then created to query this influxDB based on statistics and time window.
+
 ## Technology Stack
 
 - **Java**: The backend application is implemented using Java 21.

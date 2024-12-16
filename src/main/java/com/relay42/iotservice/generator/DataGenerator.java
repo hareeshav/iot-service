@@ -1,6 +1,7 @@
 package com.relay42.iotservice.generator;
 
 import com.relay42.iotservice.model.SensorData;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -11,6 +12,7 @@ import java.time.Instant;
 import java.util.List;
 
 @Service
+@Slf4j
 public class DataGenerator {
     @Autowired
     private KafkaTemplate<String, SensorData> kafkaTemplate;
@@ -25,7 +27,7 @@ public class DataGenerator {
         for (String deviceId : deviceIds) {
             SensorData data = new SensorData(deviceId, Math.random() * 100, Instant.now());
             kafkaTemplate.send(topic, data.deviceId(), data);
-            System.out.println("Sent: " + data);
+            log.info("Sent to kafka: {}", data);
         }
     }
 }

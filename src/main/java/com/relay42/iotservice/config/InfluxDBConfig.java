@@ -32,6 +32,7 @@ public class InfluxDBConfig {
             influxDBClient = InfluxDBClientFactory.create(influxDbUrl, token.toCharArray(), orgName, bucketName);
         }
 
+        //TODO: Use in case for testing where the bucket is not created by default
         // createBucketIfNotExists();
     }
 

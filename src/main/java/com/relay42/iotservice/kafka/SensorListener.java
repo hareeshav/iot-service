@@ -34,11 +34,10 @@ public class SensorListener {
             // Save the sensor data to InfluxDB
             sensorRepository.saveSensorData(sensorData);
 
-            System.out.println("Sensor data saved to InfluxDB: " + sensorData);
+            log.info("Sensor data saved to InfluxDB: {}", sensorData);
 
         } catch (Exception e) {
-           //log.error(e.getMessage());
-            // Handle any exceptions (e.g., invalid JSON, InfluxDB errors)
+            log.error(e.getMessage());
         }
     }
 }
